@@ -323,6 +323,92 @@ REVIEWS
 }
 
 /* =========================
+FORM CLEANUP
+========================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Remove ugly default fieldset styling */
+fieldset {
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    border-radius: 16px;
+    padding: 1.5rem 1.2rem;
+    margin: 0;
+}
+
+/* Clean legend */
+legend {
+    padding: 0 0.5rem;
+    color: #ff4d4d;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+/* Inputs + textarea */
+input,
+textarea {
+    width: 100%;
+    padding: 0.6rem 0.7rem;
+
+    border-radius: 8px;
+    border: 1px solid rgba(255, 0, 0, 0.3);
+
+    background: rgba(0, 0, 0, 0.6);
+    color: #eee;
+
+    font-size: 0.95rem;
+
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+/* Fix textarea sizing */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Focus glow */
+input:focus,
+textarea:focus {
+    border-color: #ff4d4d;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+/* Placeholder text */
+::placeholder {
+    color: #777;
+}
+
+/* Form container (centering + glow box) */
+.contact-form {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 1.5rem;
+
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 20px;
+
+    border: 1px solid rgba(255, 0, 0, 0.25);
+
+    backdrop-filter: blur(10px);
+
+    animation: redPulse 4s ease-in-out infinite;
+}
+
+/* =========================
 FOOTER
 ========================= */
 footer {
