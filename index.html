@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haunts Crawlers</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Haunts Crawlers</h1>
+
+        <nav aria-label="Main navigation">
+            <button id="menu-toggle">☰</button>
+
+            <ul id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="care.html">Care</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html">Store</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h2>Bioactive Species</h2>
+        <p>Captive-bred isopods raised for quality and consistency</p>
+    </section>
+
+    <main>
+
+        <!-- FEATURED PRODUCT -->
+        <section class="products">
+            <h2>Featured Species</h2>
+
+            <article>
+                <header>
+                    <h3><em>Cubaris murina</em> "Florida Orange"</h3>
+                </header>
+
+                <figure>
+                    <img src="IMG/Isopod_500x333.png" alt="Florida Orange Isopod">
+                    <figcaption>Local Pickup Only</figcaption>
+                </figure>
+
+                <p>Bright orange morph, active and hardy—perfect for bioactive setups.</p>
+                <p><strong>5 for $5 || 10 for $10</strong></p>
+
+                <a href="cart.html">
+                    <button>View in Shop</button>
+                </a>
+            </article>
+        </section>
+
+        <!-- ABOUT -->
+        <section>
+            <h2>About Us</h2>
+            <p>
+                Haunts Crawlers is focused on producing healthy, captive-bred invertebrates
+                for bioactive enclosures. Every culture is maintained with consistency,
+                cleanliness, and long-term sustainability in mind.
+            </p>
+            <p>
+                We prioritize quality over quantity—ensuring each colony is strong,
+                active, and ready to thrive in your setup.
+            </p>
+        </section>
+
+        <!-- REVIEWS (COMING SOON PANEL) -->
+        <section class="reviews-placeholder">
+            <h2>Customer Reviews</h2>
+        
+            <div class="reviews-box">
+                <p>No reviews yet.</p>
+                <p>Be the first to share your experience.</p>
+        
+                <a href="contact.html">
+                    <button>Leave a Review</button>
+                </a>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section>
+            <h2>Ready to Start?</h2>
+            <p>Browse all available species and build your order.</p>
+
+            <a href="cart.html">
+                <button>Go to Shop</button>
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Haunts Crawlers | Local Pickup Only</p>
+    </footer>
+
+    <button id="back-to-top">Back to Top</button>
+
+    <script>
+        /* NAV TOGGLE */
+        const toggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("menu");
+
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("active");
+        });
+    </script>
+
+    <script>
+        /* BACK TO TOP */
+        const backToTop = document.getElementById("back-to-top");
+
+        window.addEventListener("scroll", () => {
+            backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+
+</body>
+
+</html>

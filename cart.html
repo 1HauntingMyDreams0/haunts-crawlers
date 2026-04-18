@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haunts Crawlers Cart</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* CART FIXES */
+        #cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.5rem 0;
+        }
+
+        .remove-btn {
+            margin-left: 10px;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+        }
+
+        /* BACK TO TOP (NORMAL FLOW) */
+        #back-to-top {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Store</h1>
+
+        <button id="menu-toggle">☰</button>
+
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <h2>Available Isopods</h2>
+        </section>
+
+        <section class="pickup-notice">
+            <p>⚠️ Local Pickup Only — No Shipping Available</p>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="products">
+            <h2>Products</h2>
+        
+            <!-- Florida Orange -->
+            <article>
+                <h3><em>Cubaris murina</em> "Florida Orange"</h3>
+                <figure>
+                    <img src="IMG/Isopod_500x333.png" alt="Cubaris murina Florida Orange">
+                </figure>
+                <p>5 for $5 || 10 for $10</p>
+        
+                <button onclick="addToCart('Florida Orange (5 Count)', 5)">Add 5</button>
+                <button onclick="addToCart('Florida Orange (10 Count)', 10)">Add 10</button>
+            </article>
+        
+            <!-- Glacier -->
+            <article>
+                <h3><em>Cubaris murina</em> "Glacier"</h3>
+                <figure>
+                    <img src="IMG/Isopod_500x333.png" alt="Cubaris murina Glacier">
+                </figure>
+                <p>5 for $5 || 10 for $10</p>
+        
+                <button onclick="addToCart('Glacier (5 Count)', 5)">Add 5</button>
+                <button onclick="addToCart('Glacier (10 Count)', 10)">Add 10</button>
+            </article>
+        
+            <!-- Armadillidium peraccae -->
+            <article>
+                <h3><em>Armadillidium peraccae</em></h3>
+                <figure>
+                    <img src="IMG/Isopod_500x333.png" alt="Armadillidium peraccae">
+                </figure>
+                <p>5 for $5 || 10 for $10</p>
+        
+                <button onclick="addToCart('Peraccae (5 Count)', 5)">Add 5</button>
+                <button onclick="addToCart('Peraccae (10 Count)', 10)">Add 10</button>
+            </article>
+        </section>
+
+        <!-- CART -->
+        <section>
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <p id="total">Total: $0</p>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Haunts Crawlers | Local Pickup Only</p>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button id="back-to-top">Back to Top</button>
+
+    <script>
+        /* MENU */
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        /* BACK TO TOP */
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* CART SYSTEM */
+        let cart = [];
+
+        function addToCart(name, price) {
+            const existing = cart.find(item => item.name === name);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+
+            renderCart();
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            renderCart();
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cart-items');
+            list.innerHTML = '';
+
+            let total = 0;
+
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+
+                li.innerHTML = `
+            <span>${item.name} x${item.qty} - $${item.price * item.qty}</span>
+            <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remove</button>
+        `;
+
+                list.appendChild(li);
+                total += item.price * item.qty;
+            });
+
+            document.getElementById('total').textContent = `Total: $${total}`;
+        }
+
+        function checkout() {
+                if (cart.length === 0) {
+                    alert('Cart is empty');
+                    return;
+                }
+
+                alert('Local pickup only. You will arrange pickup after checkout.');
+
+                console.log('Send this to Stripe:', cart);
+            }
+    </script>
+
+</body>
+
+</html>
