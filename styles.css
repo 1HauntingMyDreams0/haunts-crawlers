@@ -18,7 +18,6 @@ body {
     line-height: 1.6;
 }
 
-/* Accessibility */
 .visually-hidden {
     position: absolute;
     left: -9999px;
@@ -86,7 +85,6 @@ NAVIGATION
     text-shadow: 0 0 10px red;
 }
 
-/* Desktop Nav */
 @media (min-width: 768px) {
     #menu-toggle {
         display: none;
@@ -100,12 +98,11 @@ NAVIGATION
 }
 
 /* =========================
-HERO (IMAGE BACKGROUND)
+HERO
 ========================= */
 .hero {
     width: 100%;
     min-height: 300px;
-
     background: url("IMG/Isopod_500x333.png") center/cover no-repeat;
 
     display: flex;
@@ -113,35 +110,27 @@ HERO (IMAGE BACKGROUND)
     justify-content: center;
     align-items: center;
 
-    text-align: center;
-    padding: 2rem 1rem;
-
     position: relative;
     overflow: hidden;
 }
 
-/* Dark overlay */
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(3px);
 }
 
-/* Content stays above overlay */
 .hero h2,
 .hero p {
     position: relative;
     z-index: 1;
 }
 
-/* Glow text */
 .hero h2 {
     color: #ff4d4d;
     font-size: 2rem;
-
     text-shadow:
         0 0 5px rgba(255, 0, 0, 0.7),
         0 0 15px rgba(255, 0, 0, 0.9),
@@ -150,40 +139,18 @@ HERO (IMAGE BACKGROUND)
 
 .hero p {
     color: #ddd;
-    margin-top: 0.5rem;
 }
 
 /* =========================
-LOCAL PICKUP NOTICE
-========================= */
-.pickup-notice {
-    margin: 1rem auto;
-    padding: 0.8rem 1rem;
-    max-width: 500px;
-
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    border-radius: 12px;
-
-    background: rgba(255, 0, 0, 0.08);
-
-    color: #ff4d4d;
-    font-weight: bold;
-
-    text-align: center;
-
-    box-shadow:
-        0 0 10px rgba(255, 0, 0, 0.3),
-        inset 0 0 8px rgba(255, 0, 0, 0.15);
-}
-
-/* =========================
-PRODUCT GRID
+PRODUCT GRID (FIXED)
 ========================= */
 .products {
     display: grid;
     gap: 2rem;
 
-    grid-template-columns: repeat(auto-fit, minmax(260px, 300px));
+    grid-template-columns: 300px;
+    /* 🔥 forces true center for single item */
+
     justify-content: center;
 
     max-width: 1000px;
@@ -201,6 +168,7 @@ article {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
     background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
@@ -211,7 +179,6 @@ article {
 
     border: 1px solid rgba(255, 0, 0, 0.25);
 
-    /* 🔥 NEW: subtle pulse */
     animation: productPulse 5s ease-in-out infinite;
 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -219,9 +186,7 @@ article {
 
 article:hover {
     transform: translateY(-5px) scale(1.02);
-
     animation: none;
-    /* stops pulsing on hover */
 
     box-shadow:
         0 0 25px rgba(255, 0, 0, 0.6),
@@ -230,7 +195,76 @@ article:hover {
 }
 
 /* =========================
-PRODUCT GLOW ANIMATION
+IMAGES (CLEAN)
+========================= */
+figure {
+    margin: 1rem auto;
+}
+
+img {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+figcaption {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 0.5rem;
+}
+
+/* =========================
+BUTTONS
+========================= */
+button,
+.btn {
+    display: inline-block;
+
+    margin: 0.5rem;
+    padding: 0.7rem 1.2rem;
+
+    background: #1a0000;
+    color: #ff4d4d;
+
+    border: 1px solid rgba(255, 0, 0, 0.6);
+    border-radius: 10px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 0 5px rgba(255, 0, 0, 0.4),
+        inset 0 0 5px rgba(255, 0, 0, 0.2);
+
+    text-decoration: none;
+}
+
+button:hover,
+.btn:hover {
+    color: #fff;
+    background: #330000;
+
+    box-shadow:
+        0 0 10px rgba(255, 0, 0, 0.9),
+        0 0 20px rgba(255, 0, 0, 0.7),
+        0 0 40px rgba(255, 0, 0, 0.5);
+
+    transform: scale(1.05);
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* =========================
+ANIMATION
 ========================= */
 @keyframes productPulse {
     0% {
@@ -256,107 +290,8 @@ PRODUCT GLOW ANIMATION
 }
 
 /* =========================
-TEXT
+REVIEWS
 ========================= */
-h2 {
-    margin-bottom: 1rem;
-}
-
-h3 {
-    color: #ff4d4d;
-    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
-}
-
-/* =========================
-IMAGES
-========================= */
-figure {
-    margin: 1rem 0;
-}
-
-img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-
-    border-radius: 12px;
-    border: 1px dashed rgba(255, 0, 0, 0.5);
-    background: rgba(0, 0, 0, 0.4);
-}
-
-figcaption {
-    font-size: 0.85rem;
-    color: #aaa;
-    margin-top: 0.5rem;
-}
-
-/* =========================
-BUTTONS
-========================= */
-button {
-    margin: 0.5rem;
-    padding: 0.7rem 1.2rem;
-
-    background: #1a0000;
-    color: #ff4d4d;
-
-    border: 1px solid rgba(255, 0, 0, 0.6);
-    border-radius: 10px;
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    box-shadow:
-        0 0 5px rgba(255, 0, 0, 0.4),
-        inset 0 0 5px rgba(255, 0, 0, 0.2);
-}
-
-button:hover {
-    color: #fff;
-    background: #330000;
-
-    box-shadow:
-        0 0 10px rgba(255, 0, 0, 0.9),
-        0 0 20px rgba(255, 0, 0, 0.7),
-        0 0 40px rgba(255, 0, 0, 0.5);
-
-    transform: scale(1.05);
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-/* =========================
-REVIEWS (GLOW PANEL)
-========================= */
-.reviews-placeholder {
-    text-align: center;
-}
-
-@keyframes redPulse {
-    0% {
-        box-shadow:
-            0 0 8px rgba(255, 0, 0, 0.15),
-            0 0 20px rgba(255, 0, 0, 0.08),
-            inset 0 0 8px rgba(255, 0, 0, 0.04);
-    }
-
-    50% {
-        box-shadow:
-            0 0 18px rgba(255, 0, 0, 0.35),
-            0 0 40px rgba(255, 0, 0, 0.2),
-            inset 0 0 14px rgba(255, 0, 0, 0.08);
-    }
-
-    100% {
-        box-shadow:
-            0 0 8px rgba(255, 0, 0, 0.15),
-            0 0 20px rgba(255, 0, 0, 0.08),
-            inset 0 0 8px rgba(255, 0, 0, 0.04);
-    }
-}
-
 .reviews-box {
     max-width: 500px;
     margin: 1.5rem auto;
@@ -371,22 +306,20 @@ REVIEWS (GLOW PANEL)
     -webkit-backdrop-filter: blur(10px);
 
     animation: redPulse 4s ease-in-out infinite;
-
-    transition: all 0.3s ease;
 }
 
-.reviews-box:hover {
-    animation: none;
+@keyframes redPulse {
+    0% {
+        box-shadow: 0 0 8px rgba(255, 0, 0, 0.15);
+    }
 
-    box-shadow:
-        0 0 25px rgba(255, 0, 0, 0.5),
-        0 0 50px rgba(255, 0, 0, 0.25),
-        inset 0 0 15px rgba(255, 0, 0, 0.1);
-}
+    50% {
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    }
 
-.reviews-box p {
-    margin: 0.5rem 0;
-    color: #ccc;
+    100% {
+        box-shadow: 0 0 8px rgba(255, 0, 0, 0.15);
+    }
 }
 
 /* =========================
@@ -405,78 +338,4 @@ BACK TO TOP
 #back-to-top {
     display: block;
     margin: 10px auto;
-}
-
-/* =========================
-FORM INPUTS (RED GLOW THEME)
-========================= */
-input,
-textarea,
-select {
-    width: 100%;
-    max-width: 400px;
-
-    padding: 0.6rem;
-    margin: 0.3rem auto;
-
-    background: rgba(0, 0, 0, 0.6);
-    color: #eee;
-
-    border: 1px solid rgba(255, 0, 0, 0.4);
-    border-radius: 8px;
-
-    outline: none;
-
-    display: block;
-
-    box-shadow:
-        0 0 5px rgba(255, 0, 0, 0.2),
-        inset 0 0 5px rgba(255, 0, 0, 0.1);
-
-    transition: all 0.25s ease;
-}
-
-/* Focus glow */
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: rgba(255, 0, 0, 0.8);
-
-    box-shadow:
-        0 0 10px rgba(255, 0, 0, 0.7),
-        0 0 20px rgba(255, 0, 0, 0.4),
-        inset 0 0 8px rgba(255, 0, 0, 0.2);
-
-    background: rgba(0, 0, 0, 0.85);
-}
-
-/* Placeholder styling */
-input::placeholder,
-textarea::placeholder {
-    color: #888;
-}
-
-/* Labels spacing */
-label {
-    display: block;
-    margin-top: 0.5rem;
-    color: #ff4d4d;
-}
-
-/* Fieldset styling */
-fieldset {
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 1rem;
-    margin-top: 1rem;
-
-    box-shadow:
-        inset 0 0 10px rgba(255, 0, 0, 0.1);
-}
-
-/* Legend styling */
-legend {
-    padding: 0 0.5rem;
-    color: #ff4d4d;
-    text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
 }
