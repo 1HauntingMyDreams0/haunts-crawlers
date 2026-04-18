@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Invertebrate Shop</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Contact</h1>
+
+        <button id="menu-toggle">☰ Menu</button>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Questions</h2>
+
+            <article>
+                <p>Have a question about our invertebrates or care? Send us a message.</p>
+
+                <form action="https://formspree.io/f/yourformid" method="POST">
+                    <fieldset>
+                        <legend>Contact Form</legend>
+
+                        <label for="name">Name</label><br>
+                        <input type="text" id="name" name="name" placeholder="Your name..." required><br><br>
+
+                        <label for="email">Email</label><br>
+                        <input type="email" id="email" name="email" placeholder="Your email..." required><br><br>
+
+                        <label for="message">Message</label><br>
+                        <textarea id="message" name="message" rows="5" placeholder="Type your message here..."
+                            required></textarea><br><br>
+
+                        <button type="submit">Send Message</button>
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+
+        <section>
+            <h2>Local Pickup Planning</h2>
+
+            <article>
+                <p>Planning to pick up locally? Let us know the details.</p>
+
+                <form action="https://formspree.io/f/yourformid" method="POST">
+                    <fieldset>
+                        <legend>Pickup Request</legend>
+
+                        <label for="pickup-name">Name</label><br>
+                        <input type="text" id="pickup-name" name="name" placeholder="Your name..." required><br><br>
+
+                        <label for="pickup-email">Email</label><br>
+                        <input type="email" id="pickup-email" name="email" placeholder="Your email..." required><br><br>
+
+                        <label for="date">Preferred Date</label><br>
+                        <input type="date" id="date" name="date" required><br><br>
+
+                        <label for="time">Preferred Time</label><br>
+                        <input type="time" id="time" name="time" required><br><br>
+
+                        <label for="details">Order / Details</label><br>
+                        <textarea id="details" name="details" rows="4"
+                            placeholder="What are you ordering or planning to pick up?"></textarea><br><br>
+
+                        <button type="submit">Submit Request</button>
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+
+        <section>
+            <h2>Leave a Review</h2>
+
+            <div class="reviews-box">
+                <p>We appreciate your feedback!</p>
+
+                <form action="https://formspree.io/f/yourformid" method="POST">
+                    <fieldset>
+                        <legend>Review Form</legend>
+
+                        <label for="review-name">Name</label><br>
+                        <input type="text" id="review-name" name="name" placeholder="Your name..." required><br><br>
+
+                        <label for="rating">Rating</label><br>
+                        <select id="rating" name="rating" required>
+                            <option value="">Select</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Bad</option>
+                        </select><br><br>
+
+                        <label for="review">Your Review</label><br>
+                        <textarea id="review" name="review" rows="5" placeholder="Share your experience..."
+                            required></textarea><br><br>
+
+                        <button type="submit">Submit Review</button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Invertebrate Shop</p>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
