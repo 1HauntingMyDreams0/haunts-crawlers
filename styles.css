@@ -100,13 +100,13 @@ NAVIGATION
 }
 
 /* =========================
-HERO
+HERO (IMAGE BACKGROUND)
 ========================= */
 .hero {
     width: 100%;
-    min-height: 200px;
+    min-height: 300px;
 
-    background: url("../IMG/Isopod_500x333.png") center/cover no-repeat;
+    background: url("IMG/Isopod_500x333.png") center/cover no-repeat;
 
     display: flex;
     flex-direction: column;
@@ -117,25 +117,31 @@ HERO
     padding: 2rem 1rem;
 
     position: relative;
+    overflow: hidden;
 }
 
+/* Dark overlay */
 .hero::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.6);
+
+    background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(3px);
 }
 
+/* Content stays above overlay */
 .hero h2,
 .hero p {
     position: relative;
     z-index: 1;
 }
 
+/* Glow text */
 .hero h2 {
     color: #ff4d4d;
-    font-size: 1.8rem;
+    font-size: 2rem;
+
     text-shadow:
         0 0 5px rgba(255, 0, 0, 0.7),
         0 0 15px rgba(255, 0, 0, 0.9),
@@ -145,22 +151,6 @@ HERO
 .hero p {
     color: #ddd;
     margin-top: 0.5rem;
-}
-
-@media (min-width: 768px) {
-    .hero {
-        min-height: 300px;
-    }
-
-    .hero h2 {
-        font-size: 2.5rem;
-    }
-}
-
-@media (min-width: 1200px) {
-    .hero {
-        min-height: 350px;
-    }
 }
 
 /* =========================
