@@ -12,11 +12,33 @@ BASE
 ========================= */
 body {
     font-family: Arial, sans-serif;
-    background: #050505;
+
+    background-color: #050505;
+
+    background-image:
+        radial-gradient(circle, rgba(100, 100, 100, 0.06) 5px, transparent 5px),
+        radial-gradient(circle, rgba(100, 100, 100, 0.06) 5px, transparent 5px);
+
+    background-size: 80px 80px;
+    background-position: 0 0, 40px 40px;
+
+    animation: hexMove 5s linear infinite;
+
     color: #eee;
     text-align: center;
     line-height: 1.6;
 }
+
+@keyframes hexMove {
+    from {
+        background-position: 0 0, 0 0;
+    }
+
+    to {
+        background-position: 40px 40px, -40px -40px;
+    }
+}
+
 
 .visually-hidden {
     position: absolute;
