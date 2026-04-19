@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Policy | Haunts Crawlers</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .policy-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 0, 0.25);
+
+            backdrop-filter: blur(10px);
+
+            animation: redPulse 4s ease-in-out infinite;
+        }
+
+        .policy-container h2 {
+            margin-top: 1.5rem;
+            color: #ff4d4d;
+        }
+
+        .policy-container p,
+        .policy-container li {
+            margin: 0.5rem 0;
+            line-height: 1.6;
+        }
+
+        .policy-container ul {
+            padding-left: 1.2rem;
+        }
+
+        .policy-container strong {
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Return Policy</h1>
+
+        <button id="menu-toggle">☰</button>
+
+        <ul id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Shop</a></li>
+            <li><a href="care.html">Care</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <h2>Return & Refund Policy</h2>
+        </section>
+
+        <section class="policy-container">
+
+            <h2>General Policy</h2>
+            <p>
+                All sales are considered final once completed. Due to the nature of live animals and
+                perishable or fragile items, we do not accept returns or exchanges.
+            </p>
+            <p>
+                We do not resell returned animals or used biological materials under any circumstances.
+            </p>
+
+            <h2>Local Pickup Orders</h2>
+            <p>All orders are pickup only and must be collected at the agreed location and time.</p>
+            <ul>
+                <li>Please inspect your order at the time of pickup.</li>
+                <li>Once an order has been accepted during pickup, it is considered final.</li>
+                <li>We are not responsible for issues reported after the order has left our possession.</li>
+            </ul>
+            <p>
+                If you are unable to make your pickup time, please contact us in advance to reschedule.
+            </p>
+
+            <h2>Live Animals & Biological Products</h2>
+            <p>
+                All live animals (including isopods and other invertebrates) are sold as-is at the time of pickup.
+            </p>
+            <p>
+                Because we cannot control conditions after the animal leaves our care, we do not offer refunds
+                or returns for live animals once they have been taken.
+            </p>
+
+            <h2>Order Accuracy Issues</h2>
+            <p>
+                If you receive the wrong item or there is an issue with your order at pickup, please notify us
+                immediately so we can correct it on the spot.
+            </p>
+            <p>
+                We cannot make changes or refunds after pickup has been completed.
+            </p>
+
+            <h2>Health & Care Responsibility</h2>
+            <p>
+                We take care to provide healthy animals and properly prepared materials. However, the buyer is
+                responsible for providing appropriate care, habitat, and conditions after pickup.
+            </p>
+            <p>
+                We are always happy to answer care questions before and after purchase.
+            </p>
+
+            <h2>Contact</h2>
+            <p>
+                If you have any concerns about your order, please contact us as soon as possible so we can help
+                resolve the issue.
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Haunts Crawlers | Local Pickup Only</p>
+    </footer>
+
+    <button id="back-to-top">Back to Top</button>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+</body>
+
+</html>

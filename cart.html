@@ -31,6 +31,29 @@
             display: block;
             margin: 10px auto;
         }
+
+        /* NEW: Online payment section */
+        .online-pay {
+            border: 1px solid #aa0000;
+            padding: 1rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            background: #0a0a0a;
+        }
+
+        .online-pay a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #aa0000;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .online-pay a:hover {
+            background: #ff0000;
+        }
     </style>
 </head>
 
@@ -56,7 +79,23 @@
         </section>
 
         <section class="pickup-notice">
-            <p>⚠️ Local Pickup Only — No Shipping Available</p>
+            <p>⚠️Local Pickup Only⚠️</p>
+            <p>No Shipping Available Currently</p>
+        </section>
+
+        <!-- NEW: ONLINE PAYMENT OPTION -->
+        <section class="online-pay">
+            <h2>Pay Online</h2>
+            <p>Prefer to pay ahead of time?</p>
+            <p>You can complete your purchase securely through our Square checkout.</p>
+
+            <a href="https://haunts-crawlers.square.site" target="_blank">
+                Pay with Square
+            </a>
+
+            <p style="margin-top:10px; font-size:0.9rem;">
+                Note: You’ll still arrange local pickup after purchase.
+            </p>
         </section>
 
         <!-- PRODUCTS -->
@@ -101,18 +140,28 @@
 
         </section>
 
+    <div class="policy-check">
+        <label class="checkbox-wrapper">
+            <input type="checkbox" id="agree-policy">
+            <span class="custom-box"></span>
+            I agree to the <a href="returns.html">Return Policy</a>
+        </label>
+    </div>
+
         <!-- CART -->
         <section>
             <h2>Your Cart</h2>
             <ul id="cart-items"></ul>
             <p id="total">Total: $0</p>
-            <button onclick="checkout()">Proceed to Pickup Form</button>
+
+            <!-- UPDATED BUTTON TEXT -->
+            <button onclick="checkout()">Reserve & Pay at Pickup</button>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 Haunts Crawlers | Local Pickup Only</p>
+        <p>&copy; 2026 Haunts Crawlers | Local Pickup Only | <a href="returns.html">Return Policy</a></p>
     </footer>
 
     <button id="back-to-top">Back to Top</button>
@@ -183,15 +232,31 @@
                 return;
             }
 
-            // Save cart (extra safety)
             saveCart();
-
-            // Redirect to pickup form page
             window.location.href = 'pickup.html';
         }
 
-        // Load cart on page load
         renderCart();
+
+        function checkout() {
+                const agreed = document.getElementById('agree-policy');
+
+                if (cart.length === 0) {
+                    alert('Cart is empty');
+                    return;
+                }
+
+                if (!agreed.checked) {
+                    alert('You must agree to the Return Policy before continuing.');
+                    return;
+                }
+
+                // Save cart
+                saveCart();
+
+                // Go to pickup page
+                window.location.href = 'pickup.html';
+            }
     </script>
 
 </body>
