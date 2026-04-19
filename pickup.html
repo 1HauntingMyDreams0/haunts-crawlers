@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup | Haunts Crawlers</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: left;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 16px;
+            border: 1px solid #333;
+            background: #111;
+            color: #eee;
+        }
+
+        .order-summary {
+            margin-top: 2rem;
+        }
+
+        .order-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .order-summary li {
+            margin: 5px 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #8b0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #a30000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Pickup</h1>
+
+        <button id="menu-toggle">☰</button>
+
+        <ul id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="cart.html">Shop</a></li>
+            <li><a href="care.html">Care</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <h2>Complete Your Order</h2>
+        </section>
+
+        <section class="pickup-notice">
+            <p>⚠️ Pay at Pickup — We will contact you to arrange a time</p>
+        </section>
+
+        <section>
+            <h2>Local Pickup Planning</h2>
+        
+            <article>
+        
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/maqajjgj" method="POST" id="pickup-form">
+                        <fieldset>
+                            <legend>Pickup Request</legend>
+        
+                            <label for="pickup-name">Name</label>
+                            <input type="text" id="pickup-name" name="name" placeholder="Your name..." required>
+        
+                            <label for="pickup-email">Email</label>
+                            <input type="email" id="pickup-email" name="email" placeholder="Your email..." required>
+        
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
+        
+                            <label for="time">Preferred Time</label>
+                            <input type="time" id="time" name="time" required>
+        
+                            <label for="details">Order / Details</label>
+                            <textarea id="details" name="details"
+                                placeholder="What are you ordering or planning to pick up?"></textarea>
+        
+                            <!-- Hidden total (optional but useful) -->
+                            <input type="hidden" name="total" id="order-total-input">
+        
+                            <button type="submit">Submit Request</button>
+                        </fieldset>
+                    </form>
+                </div>
+        
+                <!-- ORDER SUMMARY DISPLAY -->
+                <div class="order-summary">
+                    <h3>Your Cart</h3>
+                    <ul id="order-list"></ul>
+                    <p id="order-total">Total: $0</p>
+                </div>
+        
+            </article>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Haunts Crawlers | Local Pickup Only</p>
+    </footer>
+
+    <script>
+        /* MENU */
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('menu');
+
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('active');
+            });
+        }
+
+        /* BACK TO TOP (only runs if button exists) */
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        /* =========================
+           CART DISPLAY (pickup page)
+           ========================= */
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const list = document.getElementById('order-list');
+        const totalDisplay = document.getElementById('order-total');
+        const detailsField = document.getElementById('details');
+        const totalInput = document.getElementById('order-total-input');
+
+        let total = 0;
+        let orderText = '';
+
+        if (cart.length > 0 && list) {
+            cart.forEach(item => {
+                const line = `${item.name} x${item.qty} - $${item.price * item.qty}`;
+
+                const li = document.createElement('li');
+                li.textContent = line;
+                list.appendChild(li);
+
+                orderText += line + '\n';
+                total += item.price * item.qty;
+            });
+        }
+
+        if (totalDisplay) {
+            totalDisplay.textContent = `Total: $${total}`;
+        }
+
+        if (totalInput) {
+            totalInput.value = `$${total}`;
+        }
+
+        /* AUTO-FILL FORM DETAILS */
+        if (detailsField) {
+            detailsField.value = orderText;
+        }
+
+        /* CLEAR CART AFTER SUBMIT */
+        const form = document.getElementById('pickup-form');
+        if (form) {
+            form.addEventListener('submit', () => {
+                localStorage.removeItem('cart');
+            });
+        }
+    </script>
+
+</body>
+
+</html>

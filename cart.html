@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        /* CART FIXES */
         #cart-items {
             list-style: none;
             padding: 0;
@@ -28,7 +27,6 @@
             font-size: 0.8rem;
         }
 
-        /* BACK TO TOP (NORMAL FLOW) */
         #back-to-top {
             display: block;
             margin: 10px auto;
@@ -64,45 +62,43 @@
         <!-- PRODUCTS -->
         <section class="products">
             <h2>Products</h2>
-        
-            <!-- Florida Orange -->
+
             <article>
                 <h3><em>Cubaris murina</em></h3>
                 <p>"Florida Orange"</p>
                 <figure>
-                    <img src="IMG/Florida_Orange_3024x4032.jpeg" alt="Cubaris murina Florida Orange">
+                    <img src="IMG/Florida_Orange_3024x4032.jpeg" alt="Florida Orange">
                 </figure>
                 <p>5 for $5 || 10 for $10</p>
-        
+
                 <button onclick="addToCart('Florida Orange (5 Count)', 5)">Add 5</button>
                 <button onclick="addToCart('Florida Orange (10 Count)', 10)">Add 10</button>
             </article>
-        
-            <!-- Glacier -->
+
             <article>
                 <h3><em>Cubaris murina</em></h3>
                 <p>"Glacier"</p>
                 <figure>
-                    <img src="IMG/Glacier_3024x4032.jpeg" alt="Cubaris murina Glacier">
+                    <img src="IMG/Glacier_3024x4032.jpeg" alt="Glacier">
                 </figure>
                 <p>5 for $5 || 10 for $10</p>
-        
+
                 <button onclick="addToCart('Glacier (5 Count)', 5)">Add 5</button>
                 <button onclick="addToCart('Glacier (10 Count)', 10)">Add 10</button>
             </article>
-        
-            <!-- Armadillidium peraccae -->
+
             <article>
                 <h3><em>Armadillidium peraccae</em></h3>
-                <p>"Roly-Poly</p>
+                <p>"Roly-Poly"</p>
                 <figure>
-                    <img src="IMG/Roly_Poly_3024x4032.jpeg" alt="Armadillidium peraccae">
+                    <img src="IMG/Roly_Poly_3024x4032.jpeg" alt="Peraccae">
                 </figure>
                 <p>5 for $5 || 10 for $10</p>
-        
+
                 <button onclick="addToCart('Peraccae (5 Count)', 5)">Add 5</button>
                 <button onclick="addToCart('Peraccae (10 Count)', 10)">Add 10</button>
             </article>
+
         </section>
 
         <!-- CART -->
@@ -110,7 +106,7 @@
             <h2>Your Cart</h2>
             <ul id="cart-items"></ul>
             <p id="total">Total: $0</p>
-            <button onclick="checkout()">Checkout</button>
+            <button onclick="checkout()">Proceed to Pickup Form</button>
         </section>
 
     </main>
@@ -119,11 +115,9 @@
         <p>&copy; 2026 Haunts Crawlers | Local Pickup Only</p>
     </footer>
 
-    <!-- BACK TO TOP -->
     <button id="back-to-top">Back to Top</button>
 
     <script>
-        /* MENU */
         const toggle = document.getElementById('menu-toggle');
         const menu = document.getElementById('menu');
 
@@ -131,13 +125,12 @@
             menu.classList.toggle('active');
         });
 
-        /* BACK TO TOP */
         document.getElementById('back-to-top').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         /* CART SYSTEM */
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function addToCart(name, price) {
             const existing = cart.find(item => item.name === name);
@@ -148,12 +141,18 @@
                 cart.push({ name, price, qty: 1 });
             }
 
+            saveCart();
             renderCart();
         }
 
         function removeFromCart(name) {
             cart = cart.filter(item => item.name !== name);
+            saveCart();
             renderCart();
+        }
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
         }
 
         function renderCart() {
@@ -167,9 +166,9 @@
                 li.className = 'cart-item';
 
                 li.innerHTML = `
-            <span>${item.name} x${item.qty} - $${item.price * item.qty}</span>
-            <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remove</button>
-        `;
+                    <span>${item.name} x${item.qty} - $${item.price * item.qty}</span>
+                    <button class="remove-btn" onclick="removeFromCart('${item.name}')">Remove</button>
+                `;
 
                 list.appendChild(li);
                 total += item.price * item.qty;
@@ -179,15 +178,20 @@
         }
 
         function checkout() {
-                if (cart.length === 0) {
-                    alert('Cart is empty');
-                    return;
-                }
-
-                alert('Local pickup only. You will arrange pickup after checkout.');
-
-                console.log('Send this to Stripe:', cart);
+            if (cart.length === 0) {
+                alert('Cart is empty');
+                return;
             }
+
+            // Save cart (extra safety)
+            saveCart();
+
+            // Redirect to pickup form page
+            window.location.href = 'pickup.html';
+        }
+
+        // Load cart on page load
+        renderCart();
     </script>
 
 </body>
